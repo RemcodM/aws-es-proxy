@@ -432,6 +432,10 @@ func addHeaders(src, dest http.Header) {
 	if val, ok := src["Authorization"]; ok {
 		dest.Add("Authorization", val[0])
 	}
+
+	if val, ok := src["Origin"]; ok {
+		dest.Add("Origin", val[0])
+	}
 }
 
 // Signer.Sign requires a "seekable" body to sum body's sha256
@@ -514,7 +518,7 @@ func main() {
 	}
 
 	if ver {
-		version := 1.1
+		version := 1.3
 		logrus.Infof("Current version is: v%.1f", version)
 		os.Exit(0)
 	}
